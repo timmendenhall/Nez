@@ -154,6 +154,11 @@ namespace Nez
 			graphicsManager.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
 
 			Screen.Initialize(graphicsManager);
+			// The double SetSize is intentional / quick hack for now
+			// While debugging, it seems SetSize will initialize the GD first time around and default a size
+			// ignoring the size passed in the constructor.  The second size will work though.
+			Screen.SetSize(width, height);
+			Screen.SetSize(width, height);
 			Window.ClientSizeChanged += OnGraphicsDeviceReset;
 			Window.OrientationChanged += OnOrientationChanged;
 
